@@ -24,7 +24,7 @@ function getCardStartStyle(cardIndex: number) {
     { transform: 'translateX(-280vw)', opacity: 0 },
     { transform: 'translateX(-200vw)', opacity: 0 },
     { transform: 'translateX(-120vw)', opacity: 0 },
-    { transform: 'translateX(-40vw)', opacity: 1 },
+    { transform: 'translateX(-30vw)', opacity: 1 },
     { transform: 'translateX(40vw)', opacity: 0.5 },
     { transform: 'translateX(120vw)', opacity: 0 },
     { transform: 'translateX(200vw)', opacity: 0 },
@@ -40,7 +40,7 @@ const prevStart = () => indexStart.value = (indexStart.value - 1 + books.value.l
 </script>
 
 <template>
-  <div id="container-books" class="relative overflow-x-hidden mt-5 h-[110vw] flex justify-center items-centers">
+  <div id="container-books" class="relative mt-5 h-[110vw] w-[280px] flex justify-center items-centers">
     <span class="material-symbols-outlined button-start" id="prev-start" @click="prevStart">arrow_back_ios</span>
     <span class="material-symbols-outlined button-start" id="next-start" @click="nextStart">arrow_forward_ios</span>
     <ul>
@@ -72,7 +72,7 @@ const prevStart = () => indexStart.value = (indexStart.value - 1 + books.value.l
   }
 
   #next-start {
-    right: 0vw;
+    right: -20vw;
   }
 }
 </style>

@@ -8,7 +8,7 @@ const itemsMenu = [
   { label: 'Equipe', to: '/' },
   { label: 'Envio', to: '/' },
   { label: 'Devoluções', to: '/' },
-  { icon: 'shopping_cart', to: '/' },
+  { icon: 'shopping_cart', to: '/carrinho' },
   { icon: 'favorite', to: '/' },
   { icon: 'person', to: '/' },
 ]
@@ -33,7 +33,7 @@ const itemsMenu = [
         <span class="material-symbols-outlined">menu</span>
       </button>
 
-      <ul class="flex items-center gap-5 text-sm">
+      <ul class="flex items-center gap-7 lg:gap-5 text-sm">
         <li v-for="(item, index) in itemsMenu" :key="index">
           <RouterLink v-if="item.label" :to="item.to" class="hidden lg:block text-[#7B7881] hover:text-[#27AE60]">{{
             item.label }}
@@ -61,7 +61,6 @@ const itemsMenu = [
         </ul>
       </div>
     </transition>
-
   </div>
 </template>
 

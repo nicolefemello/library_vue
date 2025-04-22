@@ -26,7 +26,7 @@ const books = ref([
       <p class="p-2 w-fit mx-auto lg:mx-0 text-sm text-[#27AE60] border border-[#27AE60]">
         Autor de Abril
       </p>
-      <h1 class="font-bold text-4xl md:text-5xl text-[#382C2C]">Eric-Emanuel Schmitt</h1>
+      <h2 class="font-bold text-4xl md:text-5xl text-[#382C2C]">Eric-Emanuel Schmitt</h2>
       <p class="text-base text-[#4D4C4C]">
         Eric-Emmanuel Schmitt has been awarded more than 20 literary prizes and
         distinctions, and in 2001 he received the title of Chevalier des Arts et
@@ -50,10 +50,10 @@ const books = ref([
     </ul>
   </section>
 
-  <section id="releases" class="p-10">
-    <h2 class="font-semibold text-3xl sm:text-4xl text-[#231F2D]">Lançamentos</h2>
+  <section id="releases" class="p-5 md:p-10 overflow-x-hidden">
+    <h2 class=" font-semibold text-3xl sm:text-4xl text-[#231F2D]">Lançamentos</h2>
 
-    <ul id="container-books" class="hidden md:grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 p-10">
+    <ul id="container-books" class="hidden md:grid md:grid-cols-3 lg:grid-cols-4 gap-5 p-10">
       <menuBooks v-for="book in books" :key="book.id" :book="book" />
     </ul>
 
