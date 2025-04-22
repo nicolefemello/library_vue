@@ -27,7 +27,7 @@ const products = ref([
       </tbody>
     </table>
 
-    <div id="cart-mobile" class="grid gap-5 my-5">
+    <div id="cart-mobile" class="grid gap-5 my-5 lg:hidden">
       <tableCartMobile v-for="book in products" :key="book.id" :book="book" />
     </div>
 
