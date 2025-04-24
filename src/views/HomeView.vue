@@ -8,8 +8,6 @@ const bookStore = useBookStore()
 
 onMounted(async () => {
   await bookStore.fetchBooks()
-  console.log(bookStore.books)
-  console.log(bookStore.filteredBooks)
 })
 
 const infos = [
