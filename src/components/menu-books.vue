@@ -28,15 +28,11 @@ const cartStore = useCartStore()
         {{ formatCurrency(book.saleInfo.listPrice?.amount) }}
       </p>
 
-      <button @click="
-        () => {
-          cartStore.addToCart(book)
-          return console.log(cartStore.total)
-        }
-      " class="flex justify-center items-center gap-1 bg-[#27AE60] hover:bg-[#219653] trans:ition text-white py-2 px-4 w-full rounded text-sm sm:text-base"
+      <button @click="cartStore.addToCart(book)"
+        class="[flex justify-center items-center gap-1 bg-[#27AE60] hover:bg-[#219653] trans:ition text-white py-2 px-4 w-full rounded text-sm sm:text-base]"
         :class="book.saleInfo.listPrice?.amount
-          ? 'bg-[#27AE60] hover:bg-[#219653]'
-          : 'bg-gray-400 hover:bg-gray-500'
+            ? 'bg-[#27AE60] hover:bg-[#219653]'
+            : 'bg-gray-400 hover:bg-gray-500'
           ">
         <span class="material-symbols-outlined text-base">shopping_cart</span>
         {{ book.saleInfo.listPrice?.amount ? 'Comprar' : 'Resgatar' }}

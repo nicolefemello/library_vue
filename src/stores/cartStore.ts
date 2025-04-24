@@ -20,11 +20,8 @@ export const useCartStore = defineStore('cart', () => {
     const alreadyExist = products.value.find((item) => item.id === book.id)
     if (alreadyExist) {
       alreadyExist.quantity += 1
-    } else {
-      products.value.push({ ...book, quantity: 1 })
     }
-
-    console.log(products.value)
+    products.value.push({ ...book, quantity: 1 })
   }
 
   function removeFromCart(bookId: string) {
