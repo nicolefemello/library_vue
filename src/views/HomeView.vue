@@ -15,63 +15,6 @@ const infos = [
   { icon: 'star', label: 'Livros recomendados' },
   { icon: 'import_contacts', label: 'Mais vendidos' },
 ]
-
-// const books = ref([
-//   {
-//     id: 0,
-//     title: 'Chain of Iron: Volume 2',
-//     author: 'Cassandra Clare',
-//     price: 23.24,
-//     image: 'https://m.media-amazon.com/images/I/51hhM-xpf2L._SY445_SX342_.jpg',
-//     quantity: 1,
-//     favorite: true,
-//   },
-//   {
-//     id: 1,
-//     title: 'Chain of Iron: Volume 2',
-//     author: 'Cassandra Clare',
-//     price: 23.24,
-//     image: 'https://m.media-amazon.com/images/I/51hhM-xpf2L._SY445_SX342_.jpg',
-//     quantity: 1,
-//     favorite: false,
-//   },
-//   {
-//     id: 2,
-//     title: 'Chain of Iron: Volume 2',
-//     author: 'Cassandra Clare',
-//     price: 23.24,
-//     image: 'https://m.media-amazon.com/images/I/51hhM-xpf2L._SY445_SX342_.jpg',
-//     quantity: 1,
-//     favorite: false,
-//   },
-//   {
-//     id: 3,
-//     title: 'Chain of Iron: Volume 2',
-//     author: 'Cassandra Clare',
-//     price: 23.24,
-//     image: 'https://m.media-amazon.com/images/I/51hhM-xpf2L._SY445_SX342_.jpg',
-//     quantity: 1,
-//     favorite: false,
-//   },
-//   {
-//     id: 4,
-//     title: 'Chain of Iron: Volume 2',
-//     author: 'Cassandra Clare',
-//     price: 23.24,
-//     image: 'https://m.media-amazon.com/images/I/51hhM-xpf2L._SY445_SX342_.jpg',
-//     quantity: 1,
-//     favorite: false,
-//   },
-//   {
-//     id: 5,
-//     title: 'Chain of Iron: Volume 2',
-//     author: 'Cassandra Clare',
-//     price: 23.24,
-//     image: 'https://m.media-amazon.com/images/I/51hhM-xpf2L._SY445_SX342_.jpg',
-//     quantity: 1,
-//     favorite: false,
-//   },
-// ])
 </script>
 
 <template>
