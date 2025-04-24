@@ -14,7 +14,7 @@ const totalItem = computed(() => {
 
 <template>
   <tr class="flex justify-between items-center border-b border-[#BDBDBD] px-5 h-[180px] sm:h-[200px]">
-    <td class="w-5/9 py-1">
+    <td class="w-1/2 py-1">
       <div id="product-cart" class="flex gap-5 py-3">
         <img :src="book.volumeInfo.imageLinks?.smallThumbnail" :alt="book.volumeInfo.title"
           class="h-[170px] rounded-sm object-cover" />
@@ -24,12 +24,18 @@ const totalItem = computed(() => {
           <p class="text-semibold text-xl text-[#382C2C]">
             {{ formatCurrency(book.saleInfo.listPrice?.amount) }}
           </p>
-          <p>{{ book.quantity }}</p>
-          <p>Valor final: {{ formatCurrency(totalItem) }}</p>
         </div>
       </div>
     </td>
-    <!-- <td class="w-1/6 py-1"><button>-</button>{{ book.quantity }}<button>+</button></td> -->
-    <!-- <td class="w-1/6 py-1">R${{ book.price.toFixed(2).replace('.', ',') }}</td> -->
+    <td class="w-1/6 py-1">
+      <div class="flex items-center border border-black">
+        <button>-</button>
+        <p>{{ book.quantity }}</p>
+        <button>+</button>
+      </div>
+    </td>
+    <td class="w-1/6 py-1">
+      <p>{{ formatCurrency(totalItem) }}</p>
+    </td>
   </tr>
 </template>
