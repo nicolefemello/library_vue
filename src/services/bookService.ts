@@ -7,10 +7,11 @@ console.log(apiKey)
 class BookService {
   static async getBooks(): Promise<TBookApiResponse> {
     try {
+      console.log('On service')
       const response: TBookApiResponse = await api.get(`/volumes`, {
         params: {
-          q: 'programming',
-          maxResults: 10,
+          q: 'Programming',
+          maxResults: 20,
           key: apiKey,
         },
       })

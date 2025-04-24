@@ -14,11 +14,9 @@ defineProps<{
 
 <template>
   <div id="product-cart" class="flex justify-between h-[180px]">
-    <img :src="book.image" :alt="book.title">
-
     <div id="product-info" class="grid justify-between py-5">
       <h3>{{ book.title }}</h3>
-      <p>R${{ book.price.toFixed(2).replace(".", ",") }}</p>
+      <p>R${{ book.price.toFixed(2).replace('.', ',') }}</p>
 
       <div id="product-quantity" class="flex items-center">
         <button>></button>
@@ -27,6 +25,6 @@ defineProps<{
       </div>
     </div>
 
-    <p>R${{ (book.price * book.quantity).toFixed(2).replace(".", ",") }}</p>
+    <p>R${{ (book.price * book.quantity).toFixed(2).replace('.', ',') }}</p>
   </div>
 </template>
