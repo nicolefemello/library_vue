@@ -15,11 +15,9 @@ const products = computed(() => {
   <section id="cart" class="p-5 lg:p-20">
     <h1 class="font-semibold text-3xl sm:text-4xl text-[#27AE60]">Carrinho</h1>
 
-    <table class="hidden lg:grid mt-10 m-5 w-full">
+    <table id="cart-desktop" class="hidden lg:grid mt-10 m-5 w-full">
       <thead>
-        <tr
-          class="flex justify-between font-semibold text-lg text-[#382C2C] border-b border-[#27AE60]"
-        >
+        <tr class="flex justify-between font-semibold text-lg text-[#382C2C] border-b border-[#27AE60]">
           <td class="w-1/2 py-1">Título</td>
           <td class="w-1/6 py-1">Quantidade</td>
           <td class="w-1/6 py-1">Subtotal</td>
@@ -34,17 +32,12 @@ const products = computed(() => {
       <!-- <tableCartMobile v-for="book in cartStore.products" :key="book.id" :book="book" /> -->
     </div>
 
-    <RouterLink to="/" class="border border-black p-2 text-base font-medium"
-      >Voltar para loja</RouterLink
-    >
+    <RouterLink to="/" class="border border-black p-2 text-base font-medium">Voltar para loja</RouterLink>
 
     <div class="flex justify-between my-5">
       <p>
-        <input
-          type="text"
-          placeholder="Código do cupom"
-          class="border border-black outline-none text-sm text-[#4F4C57] p-2"
-        />
+        <input type="text" placeholder="Código do cupom"
+          class="border border-black outline-none text-sm text-[#4F4C57] p-2" />
         <button class="bg-[#27AE60] p-2 text-sm text-white rounded-sm ml-5">Inserir cupom</button>
       </p>
 
@@ -66,6 +59,7 @@ const products = computed(() => {
         </table>
         <button class="p-2 bg-[#27AE60] text-base text-[#FAFAFA]">Ir para o pagamento</button>
       </div>
+      <totalShop :products="products" />
     </div>
   </section>
 </template>

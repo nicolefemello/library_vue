@@ -16,11 +16,8 @@ const totalItem = computed(() => {
   <tr class="flex justify-between items-center border-b border-[#BDBDBD] px-5">
     <td class="w-5/9 py-1">
       <div id="product-cart" class="flex gap-5 py-3">
-        <img
-          :src="book.volumeInfo.imageLinks?.smallThumbnail"
-          :alt="book.volumeInfo.title"
-          class="h-[170px] rounded-sm object-cover"
-        />
+        <img :src="book.volumeInfo.imageLinks?.smallThumbnail" :alt="book.volumeInfo.title"
+          class="h-[170px] rounded-sm object-cover" />
         <div>
           <h4 class="text-semibold text-2xl text-[#382C2C]">{{ book.volumeInfo.title }}</h4>
           <p class="text-base text-[#4F4C57] my-1">{{ book.volumeInfo.authors }}</p>
