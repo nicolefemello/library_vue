@@ -10,7 +10,7 @@ class BookService {
       console.log('On service')
       const response: TBookApiResponse = await api.get(`/volumes`, {
         params: {
-          q: 'Policial',
+          q: 'Programming',
           maxResults: 20,
           key: apiKey,
         },

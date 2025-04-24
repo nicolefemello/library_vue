@@ -28,7 +28,7 @@ onMounted(async () => {
       <img
         v-if="book.volumeInfo?.imageLinks?.thumbnail"
         :src="book.volumeInfo?.imageLinks.thumbnail"
-        alt="Book cover"
+        :alt="book.volumeInfo?.title"
       />
       <p>Páginas: {{ book.volumeInfo?.pageCount }}</p>
     </div>

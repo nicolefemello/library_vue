@@ -1,27 +1,50 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import type { IBook } from '@/types/booksTypes'
 
+export interface ICartItem extends IBook {
+  quantity: number
+}
+
 export const useCartStore = defineStore('cart', () => {
-  const cart = ref<IBook[]>([])
+  const products = ref<ICartItem[]>([])
+
+  const total = computed(() => {
+    return products.value.reduce((acc, book) => {
+      const price = book.saleInfo.listPrice?.amount || 0
+      return acc + price * book.quantity
+    }, 0)
+  })
 
   function addToCart(book: IBook) {
-    const alreadyInCart = cart.value.some((item) => item.id === book.id)
-    if (!alreadyInCart) {
-      cart.value.push(book)
+    const alreadyExist = products.value.find((item) => item.id === book.id)
+    if (alreadyExist) {
+      alreadyExist.quantity += 1
+    } else {
+      products.value.push({ ...book, quantity: 1 })
     }
+
+    console.log(products.value)
   }
 
   function removeFromCart(bookId: string) {
-    cart.value = cart.value.filter((book) => book.id !== bookId)
+    const index = products.value.findIndex((book) => book.id === bookId)
+    if (index !== -1) {
+      if (products.value[index].quantity > 1) {
+        products.value[index].quantity -= 1
+      } else {
+        products.value.splice(index, 1)
+      }
+    }
   }
 
   function clearCart() {
-    cart.value = []
+    products.value = []
   }
 
   return {
-    cart,
+    products,
+    total,
     addToCart,
     removeFromCart,
     clearCart,

@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import type { IBook } from '@/types/booksTypes'
 import { formatCurrency } from '@/utils/formatCurrency'
+import { useCartStore } from '@/stores/cartStore'
 
 defineProps<{
   book: IBook
 }>()
+
+const cartStore = useCartStore()
 </script>
 
 <template>
@@ -43,6 +46,12 @@ defineProps<{
       </p>
 
       <button
+        @click="
+          () => {
+            cartStore.addToCart(book)
+            return console.log(cartStore.total)
+          }
+        "
         class="[flex justify-center items-center gap-1 bg-[#27AE60] hover:bg-[#219653] trans:ition text-white py-2 px-4 w-full rounded text-sm sm:text-base]"
         :class="
           book.saleInfo.listPrice?.amount
