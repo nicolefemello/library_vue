@@ -121,23 +121,11 @@ const prevStart = () =>
 </script>
 
 <template>
-  <div
-    id="container-books"
-    class="relative mt-5 h-[110vw] w-[280px] flex justify-center items-centers"
-  >
-    <span class="material-symbols-outlined button-start" id="prev-start" @click="prevStart"
-      >arrow_back_ios</span
-    >
-    <span class="material-symbols-outlined button-start" id="next-start" @click="nextStart"
-      >arrow_forward_ios</span
-    >
+  <div id="container-books" class="relative mt-5 h-[110vw] w-[280px] flex justify-center items-centers">
+    <span class="material-symbols-outlined button-start" id="prev-start" @click="prevStart">arrow_back_ios</span>
+    <span class="material-symbols-outlined button-start" id="next-start" @click="nextStart">arrow_forward_ios</span>
     <ul>
-      <menuBooks
-        v-for="book in books"
-        :key="book.id"
-        :book="book"
-        :style="getCardStartStyle(book.id)"
-      />
+      <menuBooks v-for="book in books" :key="book.id" :book="book" :style="getCardStartStyle(book.id)" />
     </ul>
   </div>
 </template>

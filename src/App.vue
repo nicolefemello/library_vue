@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import HeaderComp from './components/HeaderComp.vue';
-import FooterComp from './components/FooterComp.vue';
+import HeaderComp from './components/general/HeaderComp.vue';
+import FooterComp from './components/general/FooterComp.vue'
 </script>
 
 <template>

@@ -25,11 +25,8 @@ onMounted(async () => {
         {{ book.volumeInfo?.description }}
       </p>
       <p>Idioma: {{ book.volumeInfo?.language }}</p>
-      <img
-        v-if="book.volumeInfo?.imageLinks?.thumbnail"
-        :src="book.volumeInfo?.imageLinks.thumbnail"
-        :alt="book.volumeInfo?.title"
-      />
+      <img v-if="book.volumeInfo?.imageLinks?.thumbnail" :src="book.volumeInfo?.imageLinks.thumbnail"
+        :alt="book.volumeInfo?.title" />
       <p>Páginas: {{ book.volumeInfo?.pageCount }}</p>
     </div>
   </main>

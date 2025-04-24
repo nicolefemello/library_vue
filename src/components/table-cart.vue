@@ -13,7 +13,7 @@ const totalItem = computed(() => {
 </script>
 
 <template>
-  <tr class="flex justify-between items-center border-b border-[#BDBDBD] px-5">
+  <tr class="flex justify-between items-center border-b border-[#BDBDBD] px-5 h-[180px] sm:h-[200px]">
     <td class="w-5/9 py-1">
       <div id="product-cart" class="flex gap-5 py-3">
         <img :src="book.volumeInfo.imageLinks?.smallThumbnail" :alt="book.volumeInfo.title"
