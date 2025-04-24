@@ -40,6 +40,7 @@ const cartStore = useCartStore()
       </p>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
       <button
         @click="cartStore.addToCart(book)"
         class="[flex justify-center items-center gap-1 bg-[#27AE60] hover:bg-[#219653] trans:ition text-white py-2 px-4 w-full rounded text-sm sm:text-base]"
@@ -56,9 +57,13 @@ const cartStore = useCartStore()
           return console.log(cartStore.total)
         }
       " class="flex justify-center items-center gap-1 bg-[#27AE60] hover:bg-[#219653] trans:ition text-white py-2 px-4 w-full rounded text-sm sm:text-base"
+=======
+      <button @click="cartStore.addToCart(book)"
+        class="[flex justify-center items-center gap-1 bg-[#27AE60] hover:bg-[#219653] trans:ition text-white py-2 px-4 w-full rounded text-sm sm:text-base]"
+>>>>>>> 17e6eab (FIX: streamline cart item addition and remove unnecessary console logs)
         :class="book.saleInfo.listPrice?.amount
-          ? 'bg-[#27AE60] hover:bg-[#219653]'
-          : 'bg-gray-400 hover:bg-gray-500'
+            ? 'bg-[#27AE60] hover:bg-[#219653]'
+            : 'bg-gray-400 hover:bg-gray-500'
           ">
 >>>>>>> bcf2954 (FIX: styling adjustments and touch scrolling #9)
         <span class="material-symbols-outlined text-base">shopping_cart</span>
