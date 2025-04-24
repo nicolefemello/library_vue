@@ -1,5 +1,3 @@
-import type { AxiosResponse } from 'axios'
-
 export enum EBooksFilter {
   OnSale = 'ON_SALE',
   IsEbook = 'IS_EBOOK',
@@ -118,8 +116,6 @@ export interface IBookResponse {
   totalItems: number
   items?: IBook[]
 }
-
-export type TBookApiResponse = AxiosResponse<IBookResponse>
 
 export interface IBookFilterOptions {
   onSale?: boolean
