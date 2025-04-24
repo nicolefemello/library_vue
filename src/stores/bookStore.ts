@@ -8,7 +8,7 @@ export const useBookStore = defineStore('book', () => {
   const books = ref<IBook[]>()
   const bookQuery = ref<string>('livros')
   const filters = ref<Record<EBooksFilter, boolean>>({
-    [EBooksFilter.OnSale]: false,
+    [EBooksFilter.OnSale]: true,
     [EBooksFilter.IsEbook]: true,
     [EBooksFilter.HasTitle]: false,
   })
