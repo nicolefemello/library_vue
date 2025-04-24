@@ -46,12 +46,7 @@ const cartStore = useCartStore()
       </p>
 
       <button
-        @click="
-          () => {
-            cartStore.addToCart(book)
-            return console.log(cartStore.total)
-          }
-        "
+        @click="cartStore.addToCart(book)"
         class="[flex justify-center items-center gap-1 bg-[#27AE60] hover:bg-[#219653] trans:ition text-white py-2 px-4 w-full rounded text-sm sm:text-base]"
         :class="
           book.saleInfo.listPrice?.amount

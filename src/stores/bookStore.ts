@@ -26,9 +26,7 @@ export const useBookStore = defineStore('book', () => {
   async function fetchBooks() {
     try {
       const response = await BookService.getBooks()
-      console.log('Books fetched successfully:', response.data)
       books.value = response.data.items
-      console.log('valor de books:', books.value)
     } catch (err) {
       console.error('Error fetching books', err)
     }
