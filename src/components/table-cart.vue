@@ -1,41 +1,72 @@
 <script setup lang="ts">
 import type { ICartItem } from '@/stores/cartStore'
 import { formatCurrency } from '@/utils/formatCurrency'
-import { computed } from 'vue'
+import { ref, computed } from 'vue'
+
 
 const props = defineProps<{
   book: ICartItem
 }>()
 
+const quantity = ref(props.book.quantity)
+
+const addProduct = () => {
+  quantity.value += 1
+}
+
+const subtractProduct = () => {
+  if (quantity.value > 1) quantity.value -= 1
+}
+
 const totalItem = computed(() => {
-  return (props.book.saleInfo.listPrice?.amount ?? 0) * props.book.quantity
+  return (props.book.saleInfo.listPrice?.amount ?? 0) * quantity.value
 })
 </script>
 
 <template>
-  <tr class="flex justify-between items-center border-b border-[#BDBDBD] px-5 h-[180px] sm:h-[200px]">
+  <tr class="hidden sm:flex justify-between items-center border-b border-[#BDBDBD] px-5 h-[220px] sm:h-[200px]">
     <td class="w-1/2 py-1">
       <div id="product-cart" class="flex gap-5 py-3">
         <img :src="book.volumeInfo.imageLinks?.smallThumbnail" :alt="book.volumeInfo.title"
           class="h-[170px] rounded-sm object-cover" />
-        <div>
-          <h4 class="text-semibold text-2xl text-[#382C2C]">{{ book.volumeInfo.title }}</h4>
+        <div class="grid">
+          <h4 class="text-lg lg:text-xl font-semibold text-[#382C2C]">{{ book.volumeInfo.title }}</h4>
           <p class="text-base text-[#4F4C57] my-1">{{ book.volumeInfo.authors }}</p>
-          <p class="text-semibold text-xl text-[#382C2C]">
+          <p class="font-semibold text-lg text-[#382C2C]">
             {{ formatCurrency(book.saleInfo.listPrice?.amount) }}
           </p>
         </div>
       </div>
     </td>
     <td class="w-1/6 py-1">
-      <div class="flex items-center border border-black">
-        <button>-</button>
-        <p>{{ book.quantity }}</p>
-        <button>+</button>
+      <div class="flex justify-center items-center border border-black gap-8 w-fit px-5 py-2">
+        <button @click="subtractProduct">-</button>
+        <p>{{ quantity }}</p>
+        <button @click="addProduct">+</button>
       </div>
     </td>
     <td class="w-1/6 py-1">
       <p>{{ formatCurrency(totalItem) }}</p>
+    </td>
+  </tr>
+
+  <tr class="flex sm:hidden justify-between items-center">
+    <td class="py-1">
+      <div id="product-cart" class="flex gap-5 py-3">
+        <img :src="book.volumeInfo.imageLinks?.smallThumbnail" :alt="book.volumeInfo.title"
+          class="h-[170px] rounded-sm object-cover" />
+        <div class="grid">
+          <h4 class="text-lg lg:text-xl font-semibold text-[#382C2C]">{{ book.volumeInfo.title }}</h4>
+          <p>{{ formatCurrency(book.saleInfo.listPrice?.amount) }} <span class="text-sm">un.</span>
+          </p>
+          <div class="flex justify-center items-center border border-black gap-8 w-fit px-2">
+            <button @click="subtractProduct">-</button>
+            <p>{{ quantity }}</p>
+            <button @click="addProduct">+</button>
+          </div>
+          <p class="font-semibold text-lg text-[#382C2C] mt-2">Total: {{ formatCurrency(totalItem) }}</p>
+        </div>
+      </div>
     </td>
   </tr>
 </template>

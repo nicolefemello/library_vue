@@ -59,6 +59,6 @@ const infos = [
       <menuBooks v-for="book in bookStore.filteredBooks" :key="book.id" :book="book" />
     </ul>
 
-    <carrousselBooks class="sm:hidden" />
+    <carrousselBooks :products="bookStore.filteredBooks ?? []" class="sm:hidden" />
   </section>
 </template>
