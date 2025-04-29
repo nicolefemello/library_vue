@@ -22,26 +22,6 @@ const infos = [
   <section id="banner" class="flex overflow-hidden space-x-30 mt-10">
     <banner :products="bookStore.filteredBooks ?? []" />
   </section>
-  <!-- <section id="banner"
-    class="flex flex-col lg:flex-row justify-center items-center gap-10 lg:gap-20 border-b border-[#27AE60] py-10 px-4 lg:px-8">
-    <div id="banner-left" class="grid gap-5 max-w-xl text-center lg:text-left">
-      <p class="p-2 w-fit mx-auto lg:mx-0 text-sm text-[#27AE60] border border-[#27AE60]">
-        Autor de Abril
-      </p>
-      <h2 class="font-bold text-4xl md:text-5xl text-[#382C2C]">Eric-Emanuel Schmitt</h2>
-      <p class="text-base text-[#4D4C4C]">
-        Eric-Emmanuel Schmitt has been awarded more than 20 literary prizes and distinctions, and in
-        2001 he received the title of Chevalier des Arts et des Lettres. His books have been
-        translated into over 40 languages.
-      </p>
-      <button
-        class="w-full sm:w-[240px] sm:mx-auto lg:mx-0 bg-[#27AE60] hover:bg-[#219653] p-2 text-base text-white rounded">
-        Acessar página do livro
-      </button>
-    </div>
-
-    <img src="/banner.png" alt="Book image" class="w-full max-w-[300px] sm:max-w-[415px] object-cover" />
-  </section> -->
 
   <section id="info">
     <ul
@@ -60,8 +40,10 @@ const infos = [
       class="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5 p-10">
       <menuBooks v-for="book in bookStore.filteredBooks" :key="book.id" :book="book" />
     </ul>
-    <button @click="bookStore.fetchAddBooks">Adicionar mais livros</button>
 
     <carrousselBooks :products="bookStore.filteredBooks ?? []" class="sm:hidden" />
+
+    <button @click="bookStore.fetchAddBooks" class="px-3 py-2 bg-[#27AE60] rounded text-white w-full mt-5">Adicionar
+      mais livros</button>
   </section>
 </template>

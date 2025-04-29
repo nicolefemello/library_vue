@@ -31,7 +31,7 @@ const totalItem = computed(() => {
           class="h-[170px] rounded-sm object-cover" />
         <div class="grid">
           <h4 class="text-lg lg:text-xl font-semibold text-[#382C2C]">{{ book.volumeInfo.title }}</h4>
-          <p class="text-base text-[#4F4C57] my-1">{{ book.volumeInfo.authors }}</p>
+          <p class="text-base text-[#4F4C57] my-1">{{ book.volumeInfo.authors?.join(', ') }}</p>
           <p class="font-semibold text-lg text-[#382C2C]">
             {{ formatCurrency(book.saleInfo.listPrice?.amount) }}
           </p>
