@@ -15,6 +15,18 @@ const itemsMenu = [
   { icon: 'favorite', to: '/' },
   { icon: 'person', to: '/' },
 ]
+
+watch(
+  () => bookStore.query,
+  (newQuery) => {
+    if (newQuery.trim().length > 0) {
+      console.log(bookStore.query)
+      debounce(() => {
+        bookStore.fetchBooks()
+      }, 500)()
+    }
+  },
+)
 </script>
 
 <template>

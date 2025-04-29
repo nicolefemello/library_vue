@@ -25,6 +25,13 @@ export const useBookStore = defineStore('book', () => {
     return Array.from(new Set(allCategories)).sort()
   })
 
+  const categories = computed(() => {
+    if (!books.value) return []
+
+    const allCategories = books.value.flatMap((item) => item.volumeInfo.categories || [])
+    return Array.from(new Set(allCategories)).sort()
+  })
+
   const filteredBooks = computed(() => {
     const filtersToBeApplied = Object.entries(filters.value)
       .filter(([, value]) => value)

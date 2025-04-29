@@ -18,7 +18,8 @@ class BookService {
           langRestrict: 'pt, en',
         },
       })
-      return response
+
+      return data
     } catch (error) {
       console.error('Erro ao buscar os livros:', error)
       throw error

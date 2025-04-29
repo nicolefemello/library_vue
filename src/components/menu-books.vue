@@ -29,65 +29,16 @@ const cartStore = useCartStore()
       <p
         :class="[
           'flex justify-between items-center text-base',
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 0e32f22 (FEAT: enhance book fetching and filtering functionality with pagination and additional filters)
           book.saleInfo.listPrice?.amount === 0
             ? 'text-green-500'
             : book.saleInfo.listPrice?.amount == null
               ? 'text-red-500'
               : 'text-[#382C2C]',
-<<<<<<< HEAD
-=======
-          book.saleInfo.listPrice?.amount == 0 ? 'text-green-500' : 'text-[#382C2C]',
->>>>>>> 64fc763 (FIX: streamline cart item addition and remove unnecessary console logs)
-=======
->>>>>>> 0e32f22 (FEAT: enhance book fetching and filtering functionality with pagination and additional filters)
         ]"
       >
         {{ formatCurrency(book.saleInfo.listPrice?.amount) }}
       </p>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <button
-        @click="cartStore.addToCart(book)"
-        class="[flex justify-center items-center gap-1 bg-[#27AE60] hover:bg-[#219653] trans:ition text-white py-2 px-4 w-full rounded text-sm sm:text-base]"
-        :class="
-          book.saleInfo.listPrice?.amount
-            ? 'bg-[#27AE60] hover:bg-[#219653]'
-            : 'bg-gray-400 hover:bg-gray-500'
-        "
-      >
-=======
-      <button @click="
-        () => {
-          cartStore.addToCart(book)
-          return console.log(cartStore.total)
-        }
-      " class="flex justify-center items-center gap-1 bg-[#27AE60] hover:bg-[#219653] trans:ition text-white py-2 px-4 w-full rounded text-sm sm:text-base"
-=======
-      <button @click="cartStore.addToCart(book)"
-        class="[flex justify-center items-center gap-1 bg-[#27AE60] hover:bg-[#219653] trans:ition text-white py-2 px-4 w-full rounded text-sm sm:text-base]"
->>>>>>> 17e6eab (FIX: streamline cart item addition and remove unnecessary console logs)
-        :class="book.saleInfo.listPrice?.amount
-            ? 'bg-[#27AE60] hover:bg-[#219653]'
-            : 'bg-gray-400 hover:bg-gray-500'
-          ">
->>>>>>> bcf2954 (FIX: styling adjustments and touch scrolling #9)
-=======
-      <button
-        @click="cartStore.addToCart(book)"
-        class="[flex justify-center items-center gap-1 bg-[#27AE60] hover:bg-[#219653] trans:ition text-white py-2 px-4 w-full rounded text-sm sm:text-base]"
-        :class="
-          book.saleInfo.listPrice?.amount
-            ? 'bg-[#27AE60] hover:bg-[#219653]'
-            : 'bg-gray-400 hover:bg-gray-500'
-        "
-      >
->>>>>>> 64fc763 (FIX: streamline cart item addition and remove unnecessary console logs)
         <span class="material-symbols-outlined text-base">shopping_cart</span>
         {{ book.saleInfo.listPrice?.amount ? 'Comprar' : 'Resgatar' }}
       </button>
