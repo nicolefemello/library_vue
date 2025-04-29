@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 import { useBookStore } from '@/stores/bookStore'
-import { debounce } from '@/utils/debouncer'
 
 const bookStore = useBookStore()
 
@@ -17,17 +16,23 @@ const itemsMenu = [
   { icon: 'person', to: '/' },
 ]
 
-watch(
-  () => bookStore.query,
-  (newQuery) => {
-    if (newQuery.trim().length > 0) {
-      console.log(bookStore.query)
-      debounce(() => {
-        bookStore.fetchBooks()
-      }, 500)()
-    }
-  },
-)
+const handleSearchBook = () => {
+  if (bookStore.query.trim().length > 0) {
+    bookStore.fetchBooks()
+  }
+}
+
+// watch(
+//   () => bookStore.query,
+//   (newQuery) => {
+//     if (newQuery.trim().length > 0) {
+//       console.log(bookStore.query)
+//       debounce(() => {
+//         bookStore.fetchBooks()
+//       }, 500)()
+//     }
+//   },
+// )
 </script>
 
 <template>
@@ -48,7 +53,9 @@ watch(
         placeholder="Pesquisar"
         class="w-full bg-transparent outline-none text-[#231F2D]"
       />
-      <span class="material-symbols-outlined text-[#231F2D]">search</span>
+      <button @click="handleSearchBook" class="cursor-pointer">
+        <span class="material-symbols-outlined text-[#231F2D]">search</span>
+      </button>
     </label>
 
     <nav class="flex items-center">
