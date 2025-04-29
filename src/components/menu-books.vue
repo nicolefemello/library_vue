@@ -30,14 +30,20 @@ const cartStore = useCartStore()
         :class="[
           'flex justify-between items-center text-base',
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 0e32f22 (FEAT: enhance book fetching and filtering functionality with pagination and additional filters)
           book.saleInfo.listPrice?.amount === 0
             ? 'text-green-500'
             : book.saleInfo.listPrice?.amount == null
               ? 'text-red-500'
               : 'text-[#382C2C]',
+<<<<<<< HEAD
 =======
           book.saleInfo.listPrice?.amount == 0 ? 'text-green-500' : 'text-[#382C2C]',
 >>>>>>> 64fc763 (FIX: streamline cart item addition and remove unnecessary console logs)
+=======
+>>>>>>> 0e32f22 (FEAT: enhance book fetching and filtering functionality with pagination and additional filters)
         ]"
       >
         {{ formatCurrency(book.saleInfo.listPrice?.amount) }}
