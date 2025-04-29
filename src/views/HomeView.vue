@@ -60,6 +60,7 @@ const infos = [
       class="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5 p-10">
       <menuBooks v-for="book in bookStore.filteredBooks" :key="book.id" :book="book" />
     </ul>
+    <button @click="bookStore.fetchAddBooks">Adicionar mais livros</button>
 
     <carrousselBooks :products="bookStore.filteredBooks ?? []" class="sm:hidden" />
   </section>

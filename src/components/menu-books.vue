@@ -29,7 +29,11 @@ const cartStore = useCartStore()
       <p
         :class="[
           'flex justify-between items-center text-base',
-          book.saleInfo.listPrice?.amount == 0 ? 'text-green-500' : 'text-[#382C2C]',
+          book.saleInfo.listPrice?.amount === 0
+            ? 'text-green-500'
+            : book.saleInfo.listPrice?.amount == null
+              ? 'text-red-500'
+              : 'text-[#382C2C]',
         ]"
       >
         {{ formatCurrency(book.saleInfo.listPrice?.amount) }}

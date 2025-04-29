@@ -15,24 +15,6 @@ const itemsMenu = [
   { icon: 'favorite', to: '/' },
   { icon: 'person', to: '/' },
 ]
-
-const handleSearchBook = () => {
-  if (bookStore.query.trim().length > 0) {
-    bookStore.fetchBooks()
-  }
-}
-
-// watch(
-//   () => bookStore.query,
-//   (newQuery) => {
-//     if (newQuery.trim().length > 0) {
-//       console.log(bookStore.query)
-//       debounce(() => {
-//         bookStore.fetchBooks()
-//       }, 500)()
-//     }
-//   },
-// )
 </script>
 
 <template>
@@ -49,11 +31,12 @@ const handleSearchBook = () => {
     >
       <input
         v-model="bookStore.query"
+        @keydown.enter="bookStore.fetchBooks"
         type="text"
         placeholder="Pesquisar"
         class="w-full bg-transparent outline-none text-[#231F2D]"
       />
-      <button @click="handleSearchBook" class="cursor-pointer">
+      <button @click="bookStore.fetchBooks" class="cursor-pointer">
         <span class="material-symbols-outlined text-[#231F2D]">search</span>
       </button>
     </label>
