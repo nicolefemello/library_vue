@@ -2,6 +2,7 @@
 import { onMounted } from 'vue'
 import menuBooks from '@/components/menu-books.vue'
 import carrousselBooks from '@/components/carroussel-books.vue'
+import banner from '@/components/banner.vue'
 import { useBookStore } from '@/stores/bookStore'
 
 const bookStore = useBookStore()
@@ -20,7 +21,10 @@ const infos = [
 </script>
 
 <template>
-  <section id="banner"
+  <section id="banner" class="flex overflow-hidden space-x-30 mt-10">
+    <banner :products="bookStore.filteredBooks ?? []" />
+  </section>
+  <!-- <section id="banner"
     class="flex flex-col lg:flex-row justify-center items-center gap-10 lg:gap-20 border-b border-[#27AE60] py-10 px-4 lg:px-8">
     <div id="banner-left" class="grid gap-5 max-w-xl text-center lg:text-left">
       <p class="p-2 w-fit mx-auto lg:mx-0 text-sm text-[#27AE60] border border-[#27AE60]">
@@ -39,7 +43,7 @@ const infos = [
     </div>
 
     <img src="/banner.png" alt="Book image" class="w-full max-w-[300px] sm:max-w-[415px] object-cover" />
-  </section>
+  </section> -->
 
   <section id="info">
     <ul
