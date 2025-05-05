@@ -20,10 +20,6 @@ const handleRemoveProduct = () => {
 
 const quantity = computed(() => cartStore.getProductQuantity(props.book.id))
 const subtotal = computed(() => cartStore.getProductSubtotal(props.book.id))
-
-// const totalItem = computed(() => {
-//   return (props.book.saleInfo.listPrice?.amount ?? 0) * cartStore.products[book].quantity.value
-// })
 </script>
 
 <template>
@@ -81,7 +77,7 @@ const subtotal = computed(() => cartStore.getProductSubtotal(props.book.id))
             <button @click="handleAddProduct">+</button>
           </div>
           <p class="font-semibold text-lg text-[#382C2C] mt-2">
-            Total: {{ formatCurrency(cartStore.total) }}
+            Total: {{ formatCurrency(subtotal) }}
           </p>
         </div>
       </div>

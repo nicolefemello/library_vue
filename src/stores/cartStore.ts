@@ -6,14 +6,28 @@ export interface ICartItem extends IBook {
   quantity: number
 }
 
+enum EDiscountCoupon {
+  DEVWEB10 = 0.1,
+}
+
 export const useCartStore = defineStore('cart', () => {
   const products = ref<ICartItem[]>([])
+  const couponCode = ref<string>('') // armazenar o cupom atual
 
-  const total = computed(() => {
+  const subtotal = computed(() => {
     return products.value.reduce((acc, book) => {
       const price = book.saleInfo.listPrice?.amount || 0
       return acc + price * book.quantity
     }, 0)
+  })
+
+  const discount = computed(() => {
+    const discountRate = couponStore.getCouponDiscont(couponCode.value)
+    return subtotal.value * discountRate
+  })
+
+  const total = computed(() => {
+    return subtotal.value - discount.value
   })
 
   function addToCart(book: IBook) {
@@ -51,15 +65,28 @@ export const useCartStore = defineStore('cart', () => {
 
   function clearCart() {
     products.value = []
+    couponCode.value = ''
+  }
+
+  function applyCoupon(code: string) {
+    if (EDiscountCoupon[code as keyof typeof EDiscountCoupon]) {
+      couponCode.value = code
+    } else {
+      couponCode.value = ''
+    }
   }
 
   return {
     products,
+    subtotal,
+    discount,
     total,
+    couponCode,
     addToCart,
     removeFromCart,
     getProductQuantity,
     getProductSubtotal,
     clearCart,
+    applyCoupon,
   }
 })

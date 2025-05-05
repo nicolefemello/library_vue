@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useBookStore } from '@/stores/bookStore'
+import { useCartStore } from '@/stores/cartStore'
 
 const bookStore = useBookStore()
+const cartStore = useCartStore()
 
 const menuOpen = ref(false)
 
@@ -11,7 +13,7 @@ const itemsMenu = [
   { label: 'Equipe', to: '/' },
   { label: 'Envio', to: '/' },
   { label: 'Devoluções', to: '/' },
-  { icon: 'shopping_cart', to: '/carrinho' },
+  { icon: 'shopping_cart', to: '/carrinho', iterable: true },
   { icon: 'favorite', to: '/' },
   { icon: 'person', to: '/' },
 ]
@@ -56,6 +58,9 @@ const itemsMenu = [
           </RouterLink>
           <RouterLink v-else :to="item.to">
             <span class="material-symbols-outlined text-[#27AE60]">{{ item.icon }}</span>
+            <span v-if="item.iterable && cartStore.products.length >= 1">{{
+              cartStore.products.length
+            }}</span>
           </RouterLink>
         </li>
       </ul>
