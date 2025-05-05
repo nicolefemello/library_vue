@@ -8,7 +8,9 @@ import { useBookStore } from '@/stores/bookStore'
 const bookStore = useBookStore()
 
 onMounted(async () => {
-  await bookStore.fetchBooks()
+  if (!bookStore.filteredBooks.length) {
+    await bookStore.fetchBooks()
+  }
 })
 
 const infos = [
