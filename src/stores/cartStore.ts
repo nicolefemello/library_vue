@@ -39,7 +39,7 @@ export const useCartStore = defineStore('cart', () => {
     }
   }
 
-  function removeFromCart(bookId: string) {
+  function subtractFromCart(bookId: string) {
     const index = products.value.findIndex((book) => book.id === bookId)
     if (index !== -1) {
       if (products.value[index].quantity > 1) {
@@ -48,6 +48,11 @@ export const useCartStore = defineStore('cart', () => {
         products.value.splice(index, 1)
       }
     }
+  }
+
+  function removeFromCart(bookId: string) {
+    const index = products.value.findIndex((book) => book.id === bookId)
+    products.value.splice(index, 1)
   }
 
   function getProductQuantity(bookId: string) {
@@ -83,6 +88,7 @@ export const useCartStore = defineStore('cart', () => {
     total,
     couponCode,
     addToCart,
+    subtractFromCart,
     removeFromCart,
     getProductQuantity,
     getProductSubtotal,
