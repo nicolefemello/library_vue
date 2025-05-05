@@ -20,8 +20,9 @@ export const useCartStore = defineStore('cart', () => {
     const alreadyExist = products.value.find((item) => item.id === book.id)
     if (alreadyExist) {
       alreadyExist.quantity += 1
+    } else {
+      products.value.push({ ...book, quantity: 1 })
     }
-    products.value.push({ ...book, quantity: 1 })
   }
 
   function removeFromCart(bookId: string) {
@@ -35,6 +36,19 @@ export const useCartStore = defineStore('cart', () => {
     }
   }
 
+  function getProductQuantity(bookId: string) {
+    const product = products.value.find((book) => book.id === bookId)
+    return product ? product.quantity : 0
+  }
+
+  function getProductSubtotal(bookId: string) {
+    const product = products.value.find((book) => book.id === bookId)
+    if (product) {
+      const price = product.saleInfo.listPrice?.amount || 0
+      return product.quantity * price
+    }
+  }
+
   function clearCart() {
     products.value = []
   }
@@ -44,6 +58,8 @@ export const useCartStore = defineStore('cart', () => {
     total,
     addToCart,
     removeFromCart,
+    getProductQuantity,
+    getProductSubtotal,
     clearCart,
   }
 })

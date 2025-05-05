@@ -38,8 +38,10 @@ export const useBookStore = defineStore('book', () => {
     loadingStore.startLoading()
     try {
       startIndex.value = 0
-      const { items } = await BookService.getBooks(query.value, 10, startIndex.value)
-      books.value = items ?? []
+      if (!books.value.length) {
+        const { items } = await BookService.getBooks(query.value, 10, startIndex.value)
+        books.value = items ?? []
+      }
       startIndex.value += 10
     } catch (err) {
       console.error('Error fetching books', err)
@@ -52,6 +54,7 @@ export const useBookStore = defineStore('book', () => {
     loadingStore.startLoading()
     try {
       const { items } = await BookService.getBooks(query.value, 10, startIndex.value)
+      console.log('items', startIndex.value)
       books.value = [...books.value, ...(items ?? [])]
       startIndex.value += 10
     } catch (err) {

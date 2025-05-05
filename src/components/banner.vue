@@ -47,12 +47,7 @@ onUnmounted(() => {
         <h2 class="font-bold text-3xl md:text-5xl text-[#382C2C]">{{ book.volumeInfo.title }}</h2>
         <p class="text-base text-[#4D4C4C] line-clamp-5">{{ book.volumeInfo.description }}</p>
         <button
-          @click="
-            () => {
-              cartStore.addToCart(book)
-              return console.log(cartStore.total)
-            }
-          "
+          @click="cartStore.addToCart(book)"
           class="flex justify-center items-center gap-2 bg-[#27AE60] hover:bg-[#219653] transition text-white p-4 w-full rounded text-base sm:text-lg cursor-pointer"
           :class="
             book.saleInfo.listPrice?.amount
