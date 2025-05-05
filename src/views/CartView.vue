@@ -16,11 +16,11 @@ const products = computed(() => {
   <section id="cart" class="p-5 lg:p-20">
     <h1 class="font-semibold text-3xl sm:text-4xl text-[#27AE60]">Carrinho</h1>
 
-    <table id="cart" class="grid mt-10 sm:m-5 w-full">
+    <img v-if="products.length == 0" src="/carrinho.png" alt="O carrinho está vazio!" class="object-cover m-auto">
+
+    <table v-else id="cart" class="grid mt-10 sm:m-5 w-full">
       <thead>
-        <tr
-          class="flex justify-between font-semibold text-lg text-[#382C2C] border-b border-[#27AE60]"
-        >
+        <tr class="flex justify-between font-semibold text-lg text-[#382C2C] border-b border-[#27AE60]">
           <td class="w-1/2 py-1 hidden sm:block">Título</td>
           <td class="w-1/6 py-1 hidden sm:block">Quantidade</td>
           <td class="w-1/6 py-1 hidden sm:block">Subtotal</td>
@@ -31,9 +31,7 @@ const products = computed(() => {
       </tbody>
     </table>
 
-    <RouterLink to="/" class="border border-black p-2 text-base font-medium"
-      >Voltar para loja</RouterLink
-    >
+    <RouterLink to="/" class="border border-black p-2 text-base font-medium">Voltar para loja</RouterLink>
 
     <div class="flex justify-between my-10 gap-2">
       <CouponCart />

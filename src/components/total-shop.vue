@@ -31,6 +31,6 @@ const hasCoupon = computed(() => cartStore.discount > 0)
         </tr>
       </tbody>
     </table>
-    <button class="p-2 bg-[#27AE60] text-base text-[#FAFAFA]">Ir para o pagamento</button>
+    <button class="p-2 bg-[#27AE60] hover:bg-[#219653] text-base text-[#FAFAFA]">Ir para o pagamento</button>
   </div>
 </template>
