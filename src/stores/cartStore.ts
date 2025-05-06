@@ -8,11 +8,12 @@ export interface ICartItem extends IBook {
 
 enum EDiscountCoupon {
   DEVWEB10 = 0.1,
+  RAPAIZ = 1.0,
 }
 
 export const useCartStore = defineStore('cart', () => {
   const products = ref<ICartItem[]>([])
-  const couponCode = ref<string>('') // armazenar o cupom atual
+  const couponCode = ref<string>('')
 
   const subtotal = computed(() => {
     return products.value.reduce((acc, book) => {
@@ -22,7 +23,7 @@ export const useCartStore = defineStore('cart', () => {
   })
 
   const discount = computed(() => {
-    const discountRate = couponStore.getCouponDiscont(couponCode.value)
+    const discountRate = EDiscountCoupon[couponCode.value as keyof typeof EDiscountCoupon] || 0
     return subtotal.value * discountRate
   })
 
