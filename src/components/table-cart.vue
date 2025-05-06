@@ -4,6 +4,7 @@ import { formatCurrency } from '@/utils/formatCurrency';
 import { useCartStore } from '@/stores/cartStore'
 import { ref, computed } from 'vue'
 import popup from './popup.vue';
+import { toast } from 'vue3-toastify'
 
 const props = defineProps<{
   book: ICartItem
@@ -17,9 +18,10 @@ const handleAddProduct = () => {
 }
 
 const handleSubtractProduct = () => {
-  cartStore.subtractFromCart(props.book['id'])
+  if (props.book.quantity > 1) {
+    cartStore.subtractFromCart(props.book['id'])
+  } else handleRemoveProduct();
 }
-
 
 const handleRemoveProduct = () => {
   isOpen.value = true
@@ -28,6 +30,11 @@ const handleRemoveProduct = () => {
 const confirmRemove = () => {
   cartStore.removeFromCart(props.book.id)
   isOpen.value = false
+  toast.success('Livro removido do carrinho!', {
+    autoClose: 2000,
+    position: 'bottom-right',
+    theme: 'light',
+  })
 }
 
 const quantity = computed(() => cartStore.getProductQuantity(props.book.id))

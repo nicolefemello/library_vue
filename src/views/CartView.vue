@@ -18,24 +18,26 @@ const products = computed(() => {
 
     <img v-if="products.length == 0" src="/carrinho.png" alt="O carrinho está vazio!" class="object-cover m-auto">
 
-    <table v-else id="cart" class="grid mt-10 sm:m-5 w-full">
-      <thead>
-        <tr class="flex justify-between font-semibold text-lg text-[#382C2C] border-b border-[#27AE60]">
-          <td class="w-1/2 py-1 hidden sm:block">Título</td>
-          <td class="w-1/6 py-1 hidden sm:block">Quantidade</td>
-          <td class="w-1/6 py-1 hidden sm:block">Subtotal</td>
-        </tr>
-      </thead>
-      <tbody>
-        <tableCart v-for="book in products" :key="book.id" :book="book" />
-      </tbody>
-    </table>
+    <div v-else>
+      <table id="cart" class="grid mt-10 sm:m-5 w-full">
+        <thead>
+          <tr class="flex justify-between font-semibold text-lg text-[#382C2C] border-b border-[#27AE60]">
+            <td class="w-1/2 py-1 hidden sm:block">Título</td>
+            <td class="w-1/6 py-1 hidden sm:block">Quantidade</td>
+            <td class="w-1/6 py-1 hidden sm:block">Subtotal</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tableCart v-for="book in products" :key="book.id" :book="book" />
+        </tbody>
+      </table>
+
+      <div class="flex justify-between my-10 gap-2">
+        <CouponCart />
+        <totalShop />
+      </div>
+    </div>
 
     <RouterLink to="/" class="border border-black p-2 text-base font-medium">Voltar para loja</RouterLink>
-
-    <div class="flex justify-between my-10 gap-2">
-      <CouponCart />
-      <totalShop />
-    </div>
   </section>
 </template>
