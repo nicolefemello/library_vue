@@ -3,6 +3,7 @@ import { onMounted, onUnmounted, ref } from 'vue'
 import { defineProps } from 'vue'
 import { useCartStore } from '@/stores/cartStore'
 import type { IBook } from '@/types/booksTypes'
+import { toast } from 'vue3-toastify'
 
 const cartStore = useCartStore()
 const props = defineProps<{ products: IBook[] }>()
@@ -10,6 +11,15 @@ const props = defineProps<{ products: IBook[] }>()
 const displayedProducts = ref<IBook[]>([])
 const currentIndex = ref(0)
 let intervalId: number
+
+function addCart(book: IBook) {
+  cartStore.addToCart(book)
+  toast.success('Livro adicionado no carrinho!', {
+    autoClose: 2000,
+    position: 'bottom-right',
+    theme: 'light',
+  })
+}
 
 const goToSlide = (index: number) => {
   currentIndex.value = index
@@ -39,7 +49,7 @@ onUnmounted(() => {
           </p>
           <h2 class="font-bold text-3xl md:text-5xl text-[#382C2C] line-clamp-3">{{ book.volumeInfo.title }}</h2>
           <p class="text-base text-[#4D4C4C] line-clamp-5">{{ book.volumeInfo.description }}</p>
-          <button @click="() => cartStore.addToCart(book)"
+          <button @click="addCart(book)"
             class="flex justify-center items-center gap-2 p-4 w-full rounded text-white text-base sm:text-lg cursor-pointer transition"
             :class="book.saleInfo.listPrice?.amount ? 'bg-[#27AE60] hover:bg-[#219653]' : 'bg-gray-400 hover:bg-gray-500'">
             <span class="material-symbols-outlined text-base">shopping_cart</span>

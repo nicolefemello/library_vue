@@ -20,9 +20,14 @@ const handleSubtractProduct = () => {
   cartStore.subtractFromCart(props.book['id'])
 }
 
+
 const handleRemoveProduct = () => {
-  cartStore.removeFromCart(props.book['id'])
   isOpen.value = true
+}
+
+const confirmRemove = () => {
+  cartStore.removeFromCart(props.book.id)
+  isOpen.value = false
 }
 
 const quantity = computed(() => cartStore.getProductQuantity(props.book.id))

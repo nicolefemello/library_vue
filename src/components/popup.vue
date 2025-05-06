@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Dialog, DialogOverlay, DialogPanel, DialogTitle } from '@headlessui/vue'
-import { TransitionRoot, TransitionChild } from '@headlessui/vue'
+import { TransitionRoot } from '@headlessui/vue'
 
 const props = defineProps<{
   isOpen: boolean
