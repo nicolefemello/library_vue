@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useBookStore } from '@/stores/bookStore'
+import { useCartStore } from '@/stores/cartStore'
 
 const bookStore = useBookStore()
+const cartStore = useCartStore()
 
 const menuOpen = ref(false)
 
@@ -11,7 +13,7 @@ const itemsMenu = [
   { label: 'Equipe', to: '/' },
   { label: 'Envio', to: '/' },
   { label: 'Devoluções', to: '/' },
-  { icon: 'shopping_cart', to: '/carrinho' },
+  { icon: 'shopping_cart', to: '/carrinho', iterable: true },
   { icon: 'favorite', to: '/' },
   { icon: 'person', to: '/' },
 ]
@@ -26,16 +28,9 @@ const itemsMenu = [
       </div>
     </RouterLink>
 
-    <label
-      class="flex items-center gap-2 w-full sm:max-w-md bg-[#F1F1F1] text-sm text-[#B8B8B8] rounded px-3 py-2"
-    >
-      <input
-        v-model="bookStore.query"
-        @keydown.enter="bookStore.fetchBooks"
-        type="text"
-        placeholder="Pesquisar"
-        class="w-full bg-transparent outline-none text-[#231F2D]"
-      />
+    <label class="flex items-center gap-2 w-full sm:max-w-md bg-[#F1F1F1] text-sm text-[#B8B8B8] rounded px-3 py-2">
+      <input v-model="bookStore.query" @keydown.enter="bookStore.fetchBooks" type="text" placeholder="Pesquisar"
+        class="w-full bg-transparent outline-none text-[#231F2D]" />
       <button @click="bookStore.fetchBooks" class="cursor-pointer">
         <span class="material-symbols-outlined text-[#231F2D]">search</span>
       </button>
@@ -48,14 +43,14 @@ const itemsMenu = [
 
       <ul class="flex items-center gap-7 lg:gap-5 text-sm">
         <li v-for="(item, index) in itemsMenu" :key="index">
-          <RouterLink
-            v-if="item.label"
-            :to="item.to"
-            class="hidden lg:block text-[#7B7881] hover:text-[#27AE60]"
-            >{{ item.label }}
+          <RouterLink v-if="item.label" :to="item.to" class="hidden lg:block text-[#7B7881] hover:text-[#27AE60]">{{
+            item.label }}
           </RouterLink>
-          <RouterLink v-else :to="item.to">
+          <RouterLink v-else :to="item.to" class="flex">
             <span class="material-symbols-outlined text-[#27AE60]">{{ item.icon }}</span>
+            <span v-if="item.iterable && cartStore.products.length >= 1" class="text-[10px]">{{
+              cartStore.products.length
+              }}</span>
           </RouterLink>
         </li>
       </ul>
@@ -65,20 +60,12 @@ const itemsMenu = [
 
     <transition name="fade">
       <div v-if="menuOpen" class="fixed left-0 top-0 z-1 bg-white w-64 h-full p-10 shadow-lg">
-        <span
-          class="material-symbols-outlined absolute left-4 top-4 cursor-pointer"
-          @click="menuOpen = false"
-          >close</span
-        >
+        <span class="material-symbols-outlined absolute left-4 top-4 cursor-pointer"
+          @click="menuOpen = false">close</span>
         <ul class="grid gap-3 text-sm mt-10">
           <li v-for="(item, index) in itemsMenu" :key="index">
-            <RouterLink
-              v-if="item.label"
-              :to="item.to"
-              class="text-[#7B7881] hover:text-[#27AE60]"
-              @click="menuOpen = false"
-              >{{ item.label }}</RouterLink
-            >
+            <RouterLink v-if="item.label" :to="item.to" class="text-[#7B7881] hover:text-[#27AE60]"
+              @click="menuOpen = false">{{ item.label }}</RouterLink>
           </li>
         </ul>
       </div>

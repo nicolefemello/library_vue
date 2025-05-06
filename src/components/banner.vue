@@ -1,66 +1,74 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { defineProps } from 'vue'
 import { useCartStore } from '@/stores/cartStore'
 import type { IBook } from '@/types/booksTypes'
+import { toast } from 'vue3-toastify'
 
 const cartStore = useCartStore()
 const props = defineProps<{ products: IBook[] }>()
 
-const listRef = ref<HTMLElement | null>(null)
-let currentIndex = 0
+const displayedBooks = computed(() => props.products.slice(0, 10))
+const currentIndex = ref(0)
 let intervalId: number
+
+const goToSlide = (index: number) => {
+  currentIndex.value = index
+}
 
 onMounted(() => {
   intervalId = window.setInterval(() => {
-    const list = listRef.value
-    if (!list) return
-
-    const children = list.children
-
-    currentIndex = (currentIndex + 1) % children.length
-    const scrollToElement = children[currentIndex] as HTMLElement
-
-    list.scrollTo({
-      left: scrollToElement.offsetLeft,
-      behavior: 'smooth',
-    })
+    currentIndex.value = (currentIndex.value + 1) % displayedBooks.value.length
   }, 4000)
 })
 
 onUnmounted(() => {
   clearInterval(intervalId)
 })
+
+function addCart(book: IBook) {
+  cartStore.addToCart(book)
+  toast.success('Livro adicionado no carrinho!', {
+    autoClose: 2000,
+    position: 'bottom-right',
+    theme: 'light',
+  })
+}
 </script>
 
-
 <template>
-  <ul ref="listRef" class="flex overflow-x-auto scroll-smooth snap-x snap-mandatory">
-    <li v-for="book in products" :key="book.id"
-      class="flex flex-col lg:flex-row justify-center items-center border-b border-[#27AE60] lg:gap-30 px-4 lg:px-10 w-full flex-shrink-0 snap-start">
-      <div id="banner-left" class="grid gap-5 max-w-2xl text-center lg:text-left">
-        <p class="p-2 w-fit mx-auto lg:mx-0 text-sm text-[#27AE60] border border-[#27AE60]">
-          Autor de Abril
-        </p>
-        <h2 class="font-bold text-3xl md:text-5xl text-[#382C2C]">{{ book.volumeInfo.title }}</h2>
-        <p class="text-base text-[#4D4C4C] line-clamp-5">{{ book.volumeInfo.description }}</p>
-        <button @click="
-          () => {
-            cartStore.addToCart(book)
-            return console.log(cartStore.total)
-          }
-        " class="flex justify-center items-center gap-2 bg-[#27AE60] hover:bg-[#219653] transition text-white p-4 w-full rounded text-base sm:text-lg"
-          :class="book.saleInfo.listPrice?.amount
-            ? 'bg-[#27AE60] hover:bg-[#219653]'
-            : 'bg-gray-400 hover:bg-gray-500'
-            ">
-          <span class="material-symbols-outlined text-base">shopping_cart</span>
-          {{ book.saleInfo.listPrice?.amount ? 'Comprar' : 'Resgatar' }}
-        </button>
-      </div>
+  <div class="relative overflow-hidden w-full h-full">
+    <ul class="flex transition-transform duration-700 ease-in-out w-full"
+      :style="{ transform: `translateX(-${currentIndex * 100}%)` }">
+      <li v-for="book in products" :key="book.id"
+        class="w-full flex-shrink-0 flex flex-col lg:flex-row justify-center items-center px-4 lg:px-10 lg:gap-30">
+        <div id="banner-left" class="grid gap-5 max-w-xl text-center lg:text-left">
+          <p class="p-2 w-fit mx-auto lg:mx-0 text-sm text-[#27AE60] border border-[#27AE60]">
+            Autor de Abril
+          </p>
+          <h2 class="font-bold text-3xl md:text-5xl text-[#382C2C] line-clamp-3">
+            {{ book.volumeInfo.title }}
+          </h2>
+          <p class="text-base text-[#4D4C4C] line-clamp-5">{{ book.volumeInfo.description }}</p>
+          <button @click="addCart(book)"
+            class="flex justify-center items-center gap-2 p-4 w-full rounded text-white text-base sm:text-lg cursor-pointer transition"
+            :class="book.saleInfo.listPrice?.amount
+              ? 'bg-[#27AE60] hover:bg-[#219653]'
+              : 'bg-gray-400 hover:bg-gray-500'
+              ">
+            <span class="material-symbols-outlined text-base">shopping_cart</span>
+            {{ book.saleInfo.listPrice?.amount ? 'Comprar' : 'Resgatar' }}
+          </button>
+        </div>
 
-      <img :src="book.volumeInfo.imageLinks?.thumbnail" :alt="book.volumeInfo.title"
-        class="w-full max-w-[300px] sm:min-w-[250px] object-cover my-10" />
-    </li>
-  </ul>
+        <img :src="book.volumeInfo.imageLinks?.thumbnail" :alt="book.volumeInfo.title"
+          class="w-full max-w-[300px] sm:min-w-[250px] object-cover my-10" />
+      </li>
+    </ul>
+
+    <div id="manual-navigation" class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+      <button v-for="(book, index) in displayedBooks" :key="index" @click="goToSlide(index)"
+        class="w-3 h-3 rounded-full" :class="currentIndex === index ? 'bg-[#27AE60]' : 'bg-gray-300'"></button>
+    </div>
+  </div>
 </template>
