@@ -63,7 +63,7 @@ function addCart(book: IBook) {
         <span class="material-symbols-outlined text-base">shopping_cart</span>
         {{ book.saleInfo.listPrice?.amount ? 'Comprar' : 'Resgatar' }}
       </button>
-      <button @click="favoriteStore.toggleFavorite(book)"></button>
+      <button @click="favoriteStore.toggleFavorite(book)">teste</button>
     </div>
   </li>
 </template>
