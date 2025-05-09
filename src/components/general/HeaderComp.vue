@@ -14,7 +14,7 @@ const itemsMenu = [
   { label: 'Envio', to: '/' },
   { label: 'Devoluções', to: '/' },
   { icon: 'shopping_cart', to: '/carrinho', iterable: true },
-  { icon: 'favorite', to: '/' },
+  { icon: 'favorite', to: '/favoritos' },
   { icon: 'person', to: '/' },
 ]
 </script>
@@ -50,7 +50,7 @@ const itemsMenu = [
             <span class="material-symbols-outlined text-[#27AE60]">{{ item.icon }}</span>
             <span v-if="item.iterable && cartStore.products.length >= 1" class="text-[10px]">{{
               cartStore.products.length
-              }}</span>
+            }}</span>
           </RouterLink>
         </li>
       </ul>
