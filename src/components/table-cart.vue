@@ -67,7 +67,7 @@ const subtotal = computed(() => cartStore.getProductSubtotal(props.book.id))
       <button @click="handleRemoveProduct, isOpen = !isOpen" class="p-2 bg-red-600 hover:bg-red-700 rounded">
         <span class="material-symbols-outlined">delete</span>
       </button>
-      <popup :is-open="isOpen" @confirm="confirmRemove" @cancel="isOpen = false" />
+      <popup :is-open="isOpen" @confirm="confirmRemove" @cancel="isOpen = false" local="do carrinho" />
     </td>
     <td class="w-1/6 py-1">
       <p>{{ formatCurrency(subtotal) }}</p>
