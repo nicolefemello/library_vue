@@ -20,7 +20,6 @@ export const useFavoriteStore = defineStore(
 
     const toggleFavorite = (book: IBook): void => {
       const exists = favoriteProducts.value.find((item) => item.id === book.id)
-      console.log('favoriteProducts.value', favoriteProducts.value)
       return exists ? removeFavorite(book.id) : addFavorite(book)
     }
 
