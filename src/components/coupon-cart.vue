@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useCartStore } from '@/stores/cartStore'
 import { ref } from 'vue'
+import { toast } from 'vue3-toastify'
 
 const couponQuery = ref('')
 
@@ -8,8 +9,22 @@ const cartStore = useCartStore()
 
 const handleApplyCoupon = () => {
   if (couponQuery.value) {
-    cartStore.applyCoupon(couponQuery.value)
+    const result = cartStore.applyCoupon(couponQuery.value)
     couponQuery.value = ''
+
+    if (result) {
+      toast.success('Cupom aplicado com sucesso!', {
+        autoClose: 2000,
+        position: 'bottom-right',
+        theme: 'light',
+      })
+    } else {
+      toast.error('Cupom inválido!', {
+        autoClose: 2000,
+        position: 'bottom-right',
+        theme: 'light',
+      })
+    }
   }
 }
 </script>
