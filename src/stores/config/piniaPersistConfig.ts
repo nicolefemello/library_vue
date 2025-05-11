@@ -6,4 +6,9 @@ export const piniaPersistConfig: Record<string, PersistenceOptions> = {
     storage: localStorage,
     pick: ['favoriteProducts'],
   },
+  cartProducts: {
+    key: 'cartProducts',
+    storage: localStorage,
+    pick: ['products'],
+  },
 }

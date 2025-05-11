@@ -11,7 +11,7 @@ class BookService {
           q: query || 'Livros',
           maxResults,
           startIndex,
-          key: apiKey,
+          apiKey,
           orderBy: 'relevance',
           printType: 'books',
           projection: 'lite',
