@@ -7,9 +7,11 @@ export interface ICartItem extends IBook {
   quantity: number
 }
 
-enum EDiscountCoupon {
+export enum EDiscountCoupon {
   DEVWEB10 = 0.1,
-  RAPAIZ = 1.0,
+  DEVWEB20 = 0.2,
+  DEVWEB50 = 0.5,
+  RAPAZ = 1.0,
 }
 
 export const useCartStore = defineStore(

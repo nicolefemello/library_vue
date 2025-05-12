@@ -1,7 +1,5 @@
 export enum EBooksFilter {
   OnSale = 'ON_SALE',
-  IsEbook = 'IS_EBOOK',
-  HasTitle = 'HAS_TITLE',
   HasImage = 'HAS_IMAGE',
 }
 
