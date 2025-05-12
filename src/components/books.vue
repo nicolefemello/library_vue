@@ -14,10 +14,8 @@ onMounted(async () => {
     <h1>Lista de Livros</h1>
   </header>
   <main>
-    <button @click="bookStore.filters.IS_EBOOK = !bookStore.filters.IS_EBOOK">
-      Teste: {{ bookStore.filters.IS_EBOOK }}
-    </button>
-    <div v-for="book in bookStore.filteredBooks" :key="book.id" class="book-card">
+    <div>
+      <div v-for="book in bookStore.filteredBooks" :key="book.id" class="book-card">
       <h2>{{ book.volumeInfo?.title }}</h2>
       <p v-if="book.volumeInfo?.authors">Autor: {{ book.volumeInfo.authors.join(', ') }}</p>
       <p v-if="book.volumeInfo?.description">
