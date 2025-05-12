@@ -12,9 +12,7 @@ export const useBookStore = defineStore('book', () => {
   const startIndex = ref(books.value.length)
 
   const filters = ref<Record<EBooksFilter, boolean>>({
-    [EBooksFilter.OnSale]: false,
-    [EBooksFilter.IsEbook]: false,
-    [EBooksFilter.HasTitle]: false,
+    [EBooksFilter.OnSale]: true,
     [EBooksFilter.HasImage]: true,
   })
 
@@ -51,8 +49,13 @@ export const useBookStore = defineStore('book', () => {
   const fetchAddBooks = async () => {
     loadingStore.startLoading()
     try {
-      const { items } = await BookService.getBooks(query.value, 10, startIndex.value)
-      books.value = [...books.value, ...(items ?? [])]
+      const { items } = await BookService.getBooks(query.value, 20, startIndex.value)
+
+      const newBooks = (items ?? []).filter(
+        (newBook) => !books.value.some((existingBook) => existingBook.id === newBook.id),
+      )
+
+      books.value = [...books.value, ...(newBooks ?? [])]
       startIndex.value += 10
     } catch (err) {
       console.error('Error fetching books', err)
